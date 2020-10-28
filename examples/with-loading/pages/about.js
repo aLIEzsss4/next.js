@@ -1,21 +1,10 @@
-import React, { Component } from 'react'
-import Header from '../components/Header'
+const AboutPage = () => <p>This is about Next.js!</p>
 
-export default class About extends Component {
-  // Add some delay
-  static async getInitialProps () {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 500)
-    })
-    return {}
-  }
-
-  render () {
-    return (
-      <div>
-        <Header />
-        <p>This is about Next!</p>
-      </div>
-    )
-  }
+export async function getServerSideProps() {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 500)
+  })
+  return { props: {} }
 }
+
+export default AboutPage

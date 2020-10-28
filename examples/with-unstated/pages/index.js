@@ -1,29 +1,25 @@
-import React from 'react'
-import { Subscribe } from 'unstated'
-import { ClockContainer, CounterContainer } from '../containers'
-import { Clock, Counter } from '../components'
+import Link from 'next/link'
+import ClockContainer from '../containers/clock'
+import CounterContainer from '../containers/counter'
+import Clock from '../components/Clock'
+import Counter from '../components/Counter'
 
-class Index extends React.Component {
-  componentWillUnmount () {
-    clearInterval(this.timer)
-  }
-  render () {
-    return (
-      <Subscribe to={[ClockContainer, CounterContainer]}>
-        {
-          (clock, counter) => {
-            this.timer = clock.interval
-            return (
-              <div>
-                <Clock clock={clock} />
-                <Counter counter={counter} />
-              </div>
-            )
-          }
-        }
-      </Subscribe>
-    )
-  }
+export default function Index() {
+  return (
+    <CounterContainer.Provider>
+      <ClockContainer.Provider>
+        <div>
+          <Link href="/about">
+            <a>go to About</a>
+          </Link>
+          <br />
+          <br />
+          <div>
+            <Clock />
+            <Counter />
+          </div>
+        </div>
+      </ClockContainer.Provider>
+    </CounterContainer.Provider>
+  )
 }
-
-export default Index

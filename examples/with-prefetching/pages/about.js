@@ -1,8 +1,3 @@
-import Header from '../components/Header'
-
-export default () => (
-  <div>
-    <Header />
-    <p>This is the ABOUT page.</p>
-  </div>
-)
+export default function About() {
+  return <h1>This is the ABOUT page.</h1>
+}

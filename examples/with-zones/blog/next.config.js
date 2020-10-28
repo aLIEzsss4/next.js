@@ -1,6 +1,8 @@
-const { NOW_URL } = process.env
-const { alias } = require('./now.json')
+const assetPrefix = process.env.BUILDING_FOR_NOW ? '/blog' : ''
 
 module.exports = {
-  assetPrefix: NOW_URL ? `https://${alias}` : 'http://localhost:5000'
+  assetPrefix,
+  env: {
+    ASSET_PREFIX: assetPrefix,
+  },
 }

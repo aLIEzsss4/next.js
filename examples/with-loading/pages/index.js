@@ -1,9 +1,3 @@
-import React from 'react'
-import Header from '../components/Header'
+const IndexPage = () => <p>Hello Next.js!</p>
 
-export default () => (
-  <div>
-    <Header />
-    <p>Hello Next!</p>
-  </div>
-)
+export default IndexPage

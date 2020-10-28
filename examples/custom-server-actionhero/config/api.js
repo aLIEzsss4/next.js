@@ -1,5 +1,3 @@
-'use strict'
-
 const path = require('path')
 
 exports['default'] = {
@@ -26,7 +24,7 @@ exports['default'] = {
       simultaneousActions: 5,
       // allow connections to be created without remoteIp and remotePort (they will be set to 0)
       enforceConnectionProperties: true,
-      // disables the whitelisting of client params
+      // disables the access list of client params
       disableParamScrubbing: false,
       // params you would like hidden from any logs
       filteredParams: [],
@@ -46,24 +44,24 @@ exports['default'] = {
       cliIncludeInternal: true,
       // configuration for your actionhero project structure
       paths: {
-        'action': [path.join(__dirname, '/../actions')],
-        'task': [path.join(__dirname, '/../tasks')],
-        'public': [path.join(__dirname, '/../static')],
-        'pid': [path.join(__dirname, '/../pids')],
-        'log': [path.join(__dirname, '/../log')],
-        'server': [path.join(__dirname, '/../servers')],
-        'cli': [path.join(__dirname, '/../bin')],
-        'initializer': [path.join(__dirname, '/../initializers')],
-        'plugin': [path.join(__dirname, '/../node_modules')],
-        'locale': [path.join(__dirname, '/../locales')]
+        action: [path.join(__dirname, '/../actions')],
+        task: [path.join(__dirname, '/../tasks')],
+        public: [path.join(__dirname, '/../static')],
+        pid: [path.join(__dirname, '/../pids')],
+        log: [path.join(__dirname, '/../log')],
+        server: [path.join(__dirname, '/../servers')],
+        cli: [path.join(__dirname, '/../bin')],
+        initializer: [path.join(__dirname, '/../initializers')],
+        plugin: [path.join(__dirname, '/../node_modules')],
+        locale: [path.join(__dirname, '/../locales')],
       },
       // hash containing chat rooms you wish to be created at server boot
       startingChatRooms: {
         // format is {roomName: {authKey, authValue}}
         // 'secureRoom': {authorized: true},
-      }
+      },
     }
-  }
+  },
 }
 
 exports.test = {
@@ -73,25 +71,25 @@ exports.test = {
       serverToken: 'serverToken-' + process.pid,
       developmentMode: true,
       startingChatRooms: {
-        'defaultRoom': {},
-        'otherRoom': {}
+        defaultRoom: {},
+        otherRoom: {},
       },
       paths: {
-        'locale': [
+        locale: [
           // require('os').tmpdir() + require('path').sep + 'locales',
-          path.join(__dirname, '/../locales')
-        ]
+          path.join(__dirname, '/../locales'),
+        ],
       },
-      rpcTimeout: 3000
+      rpcTimeout: 3000,
     }
-  }
+  },
 }
 
 exports.production = {
   general: (api) => {
     return {
       fileRequestLogLevel: 'debug',
-      developmentMode: false
+      developmentMode: false,
     }
-  }
+  },
 }

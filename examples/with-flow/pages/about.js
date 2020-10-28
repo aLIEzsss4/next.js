@@ -1,9 +1,10 @@
 // @flow
-import * as React from 'react'
-import Layout from '../components/layout'
+import Page from '../components/Page'
 
-export default () => (
-  <Layout title='About us'>
-    <div>About us</div>
-  </Layout>
-)
+export default function About() {
+  return (
+    <Page title="About us">
+      <div>About us</div>
+    </Page>
+  )
+}

@@ -1,10 +1,8 @@
-'use strict'
-
 exports['default'] = {
   servers: {
     socket: (api) => {
       return {
-        enabled: (process.env.ENABLE_TCP_SERVER !== undefined),
+        enabled: process.env.ENABLE_TCP_SERVER !== undefined,
         // TCP or TLS?
         secure: false,
         // Passed to tls.createServer if secure=true. Should contain SSL certificates
@@ -18,10 +16,10 @@ exports['default'] = {
         // Delimiter string for incoming messages
         delimiter: '\n',
         // Maximum incoming message string length in Bytes (use 0 for Infinite)
-        maxDataLength: 0
+        maxDataLength: 0,
       }
-    }
-  }
+    },
+  },
 }
 
 exports.test = {
@@ -30,8 +28,8 @@ exports.test = {
       return {
         enabled: true,
         port: 1001 + (process.pid % 64535),
-        secure: false
+        secure: false,
       }
-    }
-  }
+    },
+  },
 }

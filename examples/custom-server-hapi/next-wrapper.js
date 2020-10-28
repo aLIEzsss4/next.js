@@ -1,19 +1,26 @@
-const { parse } = require('url')
-
-const nextHandlerWrapper = app => {
+const nextHandlerWrapper = (app) => {
   const handler = app.getRequestHandler()
   return async ({ raw, url }, h) => {
     await handler(raw.req, raw.res, url)
     return h.close
   }
 }
-const defaultHandlerWrapper = app => async ({ raw: { req, res }, url }) => {
-  const { pathname, query } = parse(url, true)
-  return app.renderToHTML(req, res, pathname, query)
+
+const pathWrapper = (app, pathName, opts) => async (
+  { raw, query, params },
+  h
+) => {
+  const html = await app.render(
+    raw.req,
+    raw.res,
+    pathName,
+    { ...query, ...params },
+    opts
+  )
+  return h.response(html).code(raw.res.statusCode)
 }
 
-const pathWrapper = (app, pathName, opts) => async ({ raw, query, params }) => {
-  return app.renderToHTML(raw.req, raw.res, pathName, { ...query, ...params }, opts)
+module.exports = {
+  pathWrapper,
+  nextHandlerWrapper,
 }
-
-module.exports = { pathWrapper, defaultHandlerWrapper, nextHandlerWrapper }

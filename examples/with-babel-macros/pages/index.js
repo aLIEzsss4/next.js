@@ -1,4 +1,3 @@
-import React from 'react'
 import preval from 'preval.macro'
 
 const whoami = preval`
@@ -8,13 +7,11 @@ const whoami = preval`
 
 export default WhoAmI
 
-function WhoAmI () {
+function WhoAmI() {
   return (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <h1>
-        <pre>
-          whoami: {whoami}
-        </pre>
+        <pre>whoami: {whoami}</pre>
       </h1>
     </div>
   )
